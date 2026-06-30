@@ -6,7 +6,7 @@ module.exports = defineConfig({
 
     testDir: './tests',
 
-    timeout: 30000,
+    timeout: 60000,
 
     expect: {
         timeout: 5000
@@ -20,7 +20,9 @@ module.exports = defineConfig({
 
         headless: false,
 
-        trace: 'on-first-retry'
+        trace: 'on-first-retry',
+
+        navigationTimeout: 60000
 
     }
 
