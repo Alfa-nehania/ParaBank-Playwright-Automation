@@ -1,3 +1,5 @@
+const { expect } = require('@playwright/test');
+
 class HomePage {
 
     constructor(page) {
@@ -8,6 +10,7 @@ class HomePage {
         this.password = page.locator('input[name="password"]');
         this.loginButton = page.locator('input[value="Log In"]');
         this.logoutLink = page.getByRole('link', { name: 'Log Out' });
+        this.loginError = page.locator('//*[@id="rightPanel"]/p');
     }
 
     async navigateToApplication() {
@@ -26,6 +29,11 @@ class HomePage {
 
     async logout() {
         await this.logoutLink.click();
+    }
+
+    async expectLoginError() {
+        await expect(this.loginError).toBeVisible();
+        await expect(this.loginError).toContainText('The username and password could not be verified.');
     }
 }
 
